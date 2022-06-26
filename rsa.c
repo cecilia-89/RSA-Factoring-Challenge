@@ -23,24 +23,23 @@ int main(int argc, char **argv)
 
 	line = malloc(buffer);
 
-	while (getline(&line, &buffer, file) > 1)
+	getline(&line, &buffer, file);
+	
+	count = 2;
+
+	int_line = strtol(line, &ptr, 10);
+
+	for (count; count < int_line; count++)
 	{
-		count = 2;
-
-		int_line = strtol(line, &ptr, 10);
-
-		for (count; count < int_line; count++)
+		if (int_line % count == 0 && is_prime(count))
 		{
-			if (int_line % count == 0)
-			{
-				res = int_line / count;
+			res = int_line / count;
 
-				printf("%lld=%lld*%lld\n", int_line, res, count);
+			printf("%lld=%lld*%lld\n", int_line, res, count);
 
-				break;
-			}
-
+			break;
 		}
+
 	}
 
 	return (0);
